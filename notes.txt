@@ -1532,163 +1532,89 @@ Usecases:
 
 Event Object
 
+- The Event Object in JavaScript provides information about an event when it occurs, such as the type of event, the target element, the mouse position, and keyboard state. 
+- It can be used to modify the default behavior of the event or to provide additional functionality to an event.
+
+Here are some use cases of the Event Object:
+
+1. Preventing the default behavior of an event: By default, some events perform certain actions, such as submitting a form or following a hyperlink. With the Event Object, you can prevent this default behavior using the preventDefault() method.
+
+document.querySelector('a').addEventListener('click', function(event) {
+  event.preventDefault();
+  console.log('The link was clicked, but its default behavior was prevented.');
+});
+
+2. Stopping event propagation: Event propagation is the process by which an event travels through the DOM hierarchy from the top-level element to the target element. The Event Object has a stopPropagation() method that can be used to stop the event from propagating further up the hierarchy.
+
+document.querySelector('button').addEventListener('click', function(event) {
+  event.stopPropagation();
+  console.log('The button was clicked, but the event did not propagate further.');
+});
+
+3. Accessing information about the event: The Event Object provides a variety of properties and methods that allow you to access information about the event, such as the target element, the type of event, the coordinates of the mouse, and the state of the keyboard.
+
+document.addEventListener('mousemove', function(event) {
+  console.log(`The mouse is at (${event.clientX}, ${event.clientY})`);
+});
+
+4. Dynamically modifying elements on the page based on the event: With the Event Object, you can dynamically modify elements on the page based on the event that occurs. For example, you can change the color of a button when it is clicked, or display a message when the mouse moves over an element.
+
+document.querySelector('button').addEventListener('click', function(event) {
+  event.target.style.backgroundColor = 'red';
+});
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 CurrentTarget vs Target
+
+- In JavaScript, events can propagate through the DOM, meaning they can be triggered on an element and then propagate up through its ancestors. 
+- When an event is triggered, it can be handled by multiple event listeners attached to different elements.
+
+- In this context, the event.currentTarget property refers to the element to which the event listener is attached, while the event.target property refers to the element on which the event was originally triggered.
+
+Here are some use cases for event.currentTarget and event.target:
+
+1. When you want to apply an event listener to a parent element and then determine which child element triggered the event. In this case, you would attach the event listener to the parent element, and then use event.target to determine which child element was clicked or otherwise triggered the event.
+
+2. When you want to handle an event on an element and then stop the event from propagating further up the DOM. In this case, you would attach the event listener to the element you want to handle the event on, and then use event.stopPropagation() to prevent the event from bubbling up to parent elements.
+
+3. When you want to apply an event listener to multiple elements, but perform a different action based on which element triggered the event. In this case, you would attach the event listener to the parent element, and then use event.currentTarget to determine which child element triggered the event, and then perform a different action based on that element.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Event Propagation - Bubbling- Capturing
 
+- Event propagation is the process of propagating an event from the target element to its parent elements in the DOM tree. There are two types of event propagation in the DOM:
+
+  1. Bubbling: In bubbling, the event is first captured by the innermost element and then propagated to its parent elements in the DOM tree. For example, if you click on a button that is inside a div element, the button's click event will be captured first, and then the div's click event will be captured next.
+
+  2. Capturing: In capturing, the event is first captured by the outermost element and then propagated to its child elements in the DOM tree. For example, if you click on a div element that contains a button, the div's click event will be captured first, and then the button's click event will be captured next.
+
+- To understand the event propagation, we can use the event object that is passed to the event handler function. The event object has two important properties:
+
+  1. event.target: It refers to the element on which the event was originally fired.
+
+  2. event.currentTarget: It refers to the element on which the event handler is currently attached.
+
+Here are some use cases of event propagation:
+
+  1. Event delegation: Event delegation is a technique that uses event propagation to handle events on multiple elements with a single event handler. For example, if you have a list of items and want to handle the click event on each item, you can attach the event handler to the parent element and use event.target to identify the clicked item.
+
+  2. Stop propagation: Sometimes, you may want to stop the event from propagating further to its parent elements. You can use the event.stopPropagation() method to stop the event propagation.
+
+Capturing and bubbling: You can use the addEventListener() method to attach event handlers to elements and control the event propagation using the third parameter of the method. If you set this parameter to true, the event will be captured instead of bubbling. If you set it to false or omit it, the event will bubble by default.
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Event Propagation Example
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Forms
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Local Storage
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Local Storage With Multiple Values
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-setTimeout
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-setInterval
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Events - "DOMContentLoaded"
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Events - "load"
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Events - "scroll"
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Width, Height, GetBoundingClientRect
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Events - "resize"
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Event Object usecases 
-The Event Object in JavaScript provides information about an event when it occurs, such as the type of event, the target element, the mouse position, and keyboard state. It can be used to modify the default behavior of the event or to provide additional functionality to an event.
-
-Here are some use cases of the Event Object:
-
-Preventing the default behavior of an event: By default, some events perform certain actions, such as submitting a form or following a hyperlink. With the Event Object, you can prevent this default behavior using the preventDefault() method.
-Example:
-
-javascript
-Copy code
-document.querySelector('a').addEventListener('click', function(event) {
-  event.preventDefault();
-  console.log('The link was clicked, but its default behavior was prevented.');
-});
-Stopping event propagation: Event propagation is the process by which an event travels through the DOM hierarchy from the top-level element to the target element. The Event Object has a stopPropagation() method that can be used to stop the event from propagating further up the hierarchy.
-Example:
-
-javascript
-Copy code
-document.querySelector('button').addEventListener('click', function(event) {
-  event.stopPropagation();
-  console.log('The button was clicked, but the event did not propagate further.');
-});
-Accessing information about the event: The Event Object provides a variety of properties and methods that allow you to access information about the event, such as the target element, the type of event, the coordinates of the mouse, and the state of the keyboard.
-Example:
-
-javascript
-Copy code
-document.addEventListener('mousemove', function(event) {
-  console.log(`The mouse is at (${event.clientX}, ${event.clientY})`);
-});
-Dynamically modifying elements on the page based on the event: With the Event Object, you can dynamically modify elements on the page based on the event that occurs. For example, you can change the color of a button when it is clicked, or display a message when the mouse moves over an element.
-Example:
-
-javascript
-Copy code
-document.querySelector('button').addEventListener('click', function(event) {
-  event.target.style.backgroundColor = 'red';
-});
-These are just a few use cases of the Event Object. With the rich set of properties and methods it provides, it can be used in a variety of ways to create dynamic and interactive web applications.
-
-
-
-
-Khushi Jain
-CurrentTarget vs Target usecases
-In JavaScript, events can propagate through the DOM, meaning they can be triggered on an element and then propagate up through its ancestors. When an event is triggered, it can be handled by multiple event listeners attached to different elements.
-
-In this context, the event.currentTarget property refers to the element to which the event listener is attached, while the event.target property refers to the element on which the event was originally triggered.
-
-Here are some use cases for event.currentTarget and event.target:
-
-When you want to apply an event listener to a parent element and then determine which child element triggered the event. In this case, you would attach the event listener to the parent element, and then use event.target to determine which child element was clicked or otherwise triggered the event.
-
-When you want to handle an event on an element and then stop the event from propagating further up the DOM. In this case, you would attach the event listener to the element you want to handle the event on, and then use event.stopPropagation() to prevent the event from bubbling up to parent elements.
-
-When you want to apply an event listener to multiple elements, but perform a different action based on which element triggered the event. In this case, you would attach the event listener to the parent element, and then use event.currentTarget to determine which child element triggered the event, and then perform a different action based on that element.
-
-
-
-
-Khushi Jain
-Event Propagation - Bubbling- Capturing usecases
-Event propagation is the process of propagating an event from the target element to its parent elements in the DOM tree. There are two types of event propagation in the DOM:
-
-Bubbling: In bubbling, the event is first captured by the innermost element and then propagated to its parent elements in the DOM tree. For example, if you click on a button that is inside a div element, the button's click event will be captured first, and then the div's click event will be captured next.
-
-Capturing: In capturing, the event is first captured by the outermost element and then propagated to its child elements in the DOM tree. For example, if you click on a div element that contains a button, the div's click event will be captured first, and then the button's click event will be captured next.
-
-To understand the event propagation, we can use the event object that is passed to the event handler function. The event object has two important properties:
-
-event.target: It refers to the element on which the event was originally fired.
-
-event.currentTarget: It refers to the element on which the event handler is currently attached.
-
-Here are some use cases of event propagation:
-
-Event delegation: Event delegation is a technique that uses event propagation to handle events on multiple elements with a single event handler. For example, if you have a list of items and want to handle the click event on each item, you can attach the event handler to the parent element and use event.target to identify the clicked item.
-
-Stop propagation: Sometimes, you may want to stop the event from propagating further to its parent elements. You can use the event.stopPropagation() method to stop the event propagation.
-
-Capturing and bubbling: You can use the addEventListener() method to attach event handlers to elements and control the event propagation using the third parameter of the method. If you set this parameter to true, the event will be captured instead of bubbling. If you set it to false or omit it, the event will bubble by default.
-
-
-
-
-Khushi Jain
-Event Propagation Example Capturing usecases
-Sure, here's an example of using event propagation with capturing:
-
-HTML:
-
-bash
-Copy code
 <div id="outer">
   <div id="inner">
     <button id="btn">Click me!</button>
   </div>
 </div>
-JavaScript:
 
-javascript
-Copy code
 const outer = document.getElementById('outer');
 const inner = document.getElementById('inner');
 const btn = document.getElementById('btn');
@@ -1704,74 +1630,62 @@ inner.addEventListener('click', () => {
 btn.addEventListener('click', () => {
   console.log('Button clicked');
 }, true); // Use capturing
-In this example, we have three elements: outer, inner, and btn. We've added a click event listener to each of these elements with the useCapture parameter set to true. This means that the event listeners will be triggered during the capturing phase of the event propagation, rather than the bubbling phase.
 
-When you click the button, you'll see the following output in the console:
+- In this example, we have three elements: outer, inner, and btn. 
+- We've added a click event listener to each of these elements with the useCapture parameter set to true. 
+- This means that the event listeners will be triggered during the capturing phase of the event propagation, rather than the bubbling phase.
 
-sql
-Copy code
-Outer clicked
-Inner clicked
-Button clicked
-This is because the capturing phase starts at the top of the DOM tree and works its way down to the target element (btn). In this case, the capturing phase triggers the event listeners on outer, inner, and btn in that order.
+- When you click the button, you'll see the following output in the console:
 
+  Outer clicked
+  Inner clicked
+  Button clicked
 
-
-
-Khushi Jain
-Forms Example usecases
-Forms are an essential part of most websites, and JavaScript can be used to enhance their functionality. Here are some examples of using JavaScript with forms:
-
-Form Validation: JavaScript can be used to validate user input in a form before it is submitted to the server. This can help to ensure that the data entered is valid and reduce the number of errors that occur. Examples of validation include checking for required fields, validating email addresses, and verifying that passwords meet certain criteria.
-
-Auto-Complete: JavaScript can be used to provide auto-complete functionality in forms. This can help users to quickly and easily enter data by suggesting values based on what has been entered so far. Examples include auto-complete for email addresses, usernames, and city names.
-
-Dynamic Form Fields: JavaScript can be used to add or remove form fields based on user input. This can be useful in cases where additional information is needed based on the user's selection. Examples include adding additional fields for shipping information when a different shipping address is selected, or adding fields for additional guests when booking a hotel room.
-
-Conditional Form Fields: JavaScript can be used to show or hide form fields based on the user's selection. This can help to simplify the form and make it easier to use by only showing relevant fields. Examples include showing fields for payment information only when a payment option is selected, or showing fields for a specific type of product only when that product is selected.
-
-AJAX Form Submission: JavaScript can be used to submit form data to the server without refreshing the page. This can provide a more seamless user experience and reduce the amount of time it takes for the form to be processed. Examples include submitting a contact form or a newsletter subscription form.
-
-These are just a few examples of how JavaScript can be used with forms. The possibilities are endless, and with the right approach, you can enhance the functionality of your forms and provide a better user experience for your visitors.
+- This is because the capturing phase starts at the top of the DOM tree and works its way down to the target element (btn). 
+- In this case, the capturing phase triggers the event listeners on outer, inner, and btn in that order.
 
 
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Khushi Jain
-Local Storage usecases
-Local storage is a way to store key-value pairs in the user's web browser. It allows developers to store data locally on the user's computer, which can be used to store information that is required by the web application to function properly. Here are some use cases of local storage:
+Forms
 
-User Preferences: Local storage can be used to store user preferences like theme, font size, language, etc. which can be retrieved every time the user visits the website.
+- Forms are an essential part of most websites, and JavaScript can be used to enhance their functionality. Here are some examples of using JavaScript with forms:
 
-Shopping Cart: Local storage can be used to store items in the shopping cart of an e-commerce website. This will help users to resume their shopping at a later time, even if they close their browser.
+  Form Validation: JavaScript can be used to validate user input in a form before it is submitted to the server. This can help to ensure that the data entered is valid and reduce the number of errors that occur. Examples of validation include checking for required fields, validating email addresses, and verifying that passwords meet certain criteria.
 
-Form Data: Local storage can be used to store form data temporarily. If a user accidentally refreshes the page or loses internet connection, the form data will still be available when the user returns to the page.
+  Auto-Complete: JavaScript can be used to provide auto-complete functionality in forms. This can help users to quickly and easily enter data by suggesting values based on what has been entered so far. Examples include auto-complete for email addresses, usernames, and city names.
 
-Game State: Local storage can be used to store the game state of a web-based game. This can help the user to resume the game from the last point where they left off.
+  Dynamic Form Fields: JavaScript can be used to add or remove form fields based on user input. This can be useful in cases where additional information is needed based on the user's selection. Examples include adding additional fields for shipping information when a different shipping address is selected, or adding fields for additional guests when booking a hotel room.
 
-User Authentication: Local storage can be used to store user authentication tokens, which can be used to keep the user logged in even after the user closes the browser.
+  Conditional Form Fields: JavaScript can be used to show or hide form fields based on the user's selection. This can help to simplify the form and make it easier to use by only showing relevant fields. Examples include showing fields for payment information only when a payment option is selected, or showing fields for a specific type of product only when that product is selected.
 
-Overall, local storage is a powerful tool for web developers to provide a seamless user experience to their users. It is supported by all modern web browsers and can store up to 5-10 MB of data, depending on the browser.
+  AJAX Form Submission: JavaScript can be used to submit form data to the server without refreshing the page. This can provide a more seamless user experience and reduce the amount of time it takes for the form to be processed. Examples include submitting a contact form or a newsletter subscription form.
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+Local Storage
 
+- Local storage is a way to store key-value pairs in the user's web browser. It allows developers to store data locally on the user's computer, which can be used to store information that is required by the web application to function properly.
 
-Khushi Jain
-Local Storage With Multiple Values usecases
-Local Storage is a great way to store data in a user's browser that can be retrieved even after the user has closed the browser or turned off their computer. Here are some use cases of Local Storage with multiple values:
+  User Preferences: Local storage can be used to store user preferences like theme, font size, language, etc. which can be retrieved every time the user visits the website.
 
-User Settings: You can store user settings such as color theme, language preference, and font size in Local Storage. This can help to provide a better user experience since users won't have to keep re-setting their preferences each time they visit the website.
+  Shopping Cart: Local storage can be used to store items in the shopping cart of an e-commerce website. This will help users to resume their shopping at a later time, even if they close their browser.
 
-Shopping Cart: You can use Local Storage to store information about items that have been added to a shopping cart. This can help to create a smoother shopping experience since users won't have to re-add items to the cart each time they visit a new page.
+  Form Data: Local storage can be used to store form data temporarily. If a user accidentally refreshes the page or loses internet connection, the form data will still be available when the user returns to the page.
 
-Form Data: You can use Local Storage to store form data that users have previously entered. This can help to speed up the form-filling process since users won't have to re-enter their information each time they visit the website.
+  Game State: Local storage can be used to store the game state of a web-based game. This can help the user to resume the game from the last point where they left off.
 
-Game Progress: If you have a game that users can play on your website, you can use Local Storage to store their progress. This can help to create a more engaging experience since users can pick up where they left off each time they visit the website.
+  User Authentication: Local storage can be used to store user authentication tokens, which can be used to keep the user logged in even after the user closes the browser.
+
+- It is supported by all modern web browsers and can store up to 5-10 MB of data, depending on the browser.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Local Storage With Multiple Values
 
 Here's an example of how to use Local Storage with multiple values:
 
-javascript
-Copy code
 // Store multiple values in Local Storage
 localStorage.setItem('userSettings', JSON.stringify({ theme: 'dark', language: 'en', fontSize: 16 }));
 
@@ -1781,257 +1695,261 @@ const userSettings = JSON.parse(localStorage.getItem('userSettings'));
 // Update a single value in Local Storage
 userSettings.theme = 'light';
 localStorage.setItem('userSettings', JSON.stringify(userSettings));
-In the example above, we're storing an object with multiple values in Local Storage using setItem(). We're then retrieving the values using getItem() and updating a single value before saving it back to Local Storage. Note that we're using JSON.stringify() and JSON.parse() to convert the object to a string and back again since Local Storage only supports string values.
 
+- In the example above, we're storing an object with multiple values in Local Storage using setItem(). We're then retrieving the values using getItem() and updating a single value before saving it back to Local Storage. Note that we're using JSON.stringify() and JSON.parse() to convert the object to a string and back again since Local Storage only supports string values.
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+setTimeout
 
-Khushi Jain
-setTimeout usecases
-The setTimeout() function is used to execute a function or a piece of code after a specified delay (in milliseconds). Here are some common use cases for setTimeout():
+- The setTimeout() function is used to execute a function or a piece of code after a specified delay (in milliseconds). 
+- Here are some common use cases for setTimeout():
 
-Display a notification message after a certain time delay: You can use setTimeout() to display a notification message to the user after a certain time delay. For example, you can use the following code to display a notification message after 5 seconds:
-javascript
-Copy code
-setTimeout(function() {
-  alert('Hello World!');
-}, 5000);
-Execute a function after a certain time delay: You can use setTimeout() to execute a function after a certain time delay. For example, you can use the following code to execute a function after 5 seconds:
-javascript
-Copy code
-setTimeout(function() {
-  console.log('Function executed after 5 seconds.');
-}, 5000);
-Implement a typing effect: You can use setTimeout() to implement a typing effect where characters are displayed on the screen one by one after a certain time delay. For example, you can use the following code to implement a typing effect:
-scss
-Copy code
-let text = 'Hello World!';
-let index = 0;
+  1. Display a notification message after a certain time delay: You can use setTimeout() to display a notification message to the user after a certain time delay. For example, you can use the following code to display a notification message after 5 seconds:
 
-function type() {
-  document.getElementById('output').innerHTML += text.charAt(index);
-  index++;
+  setTimeout(function() {
+    alert('Hello World!');
+  }, 5000);
 
-  if (index >= text.length) {
-    clearInterval(timer);
+  2. Execute a function after a certain time delay: You can use setTimeout() to execute a function after a certain time delay. For example, you can use the following code to execute a function after 5 seconds:
+
+  setTimeout(function() {
+    console.log('Function executed after 5 seconds.');
+  }, 5000);
+
+  3. Implement a typing effect: You can use setTimeout() to implement a typing effect where characters are displayed on the screen one by one after a certain time delay. For example, you can use the following code to implement a typing effect:
+
+  let text = 'Hello World!';
+  let index = 0;
+
+  function type() {
+    document.getElementById('output').innerHTML += text.charAt(index);
+    index++;
+
+    if (index >= text.length) {
+      clearInterval(timer);
+    }
   }
-}
 
-let timer = setInterval(type, 100);
-In this example, the type() function uses setTimeout() to display each character of the text string on the screen one by one after a time delay of 100 milliseconds. The setInterval() function is used to call the type() function repeatedly until all the characters of the text string are displayed.
+  let timer = setInterval(type, 100);
 
-Implement a loading indicator: You can use setTimeout() to implement a loading indicator where a message is displayed to the user while the page is loading. For example, you can use the following code to display a loading message for 5 seconds:
-javascript
-Copy code
-document.getElementById('loading').style.display = 'block';
+  4. Implement a loading indicator: You can use setTimeout() to implement a loading indicator where a message is displayed to the user while the page is loading. For example, you can use the following code to display a loading message for 5 seconds:
 
-setTimeout(function() {
-  document.getElementById('loading').style.display = 'none';
-}, 5000);
+  document.getElementById('loading').style.display = 'block';
+
+  setTimeout(function() {
+    document.getElementById('loading').style.display = 'none';
+  }, 5000);
+
 In this example, the setTimeout() function is used to hide the loading message after 5 seconds. The display property of the loading message is set to block to display the message and is set to none to hide the message.
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+setInterval
 
+- setInterval is a method in JavaScript that repeatedly calls a function or executes a code snippet with a fixed time delay between each call. 
+- It can be used in a variety of ways, including:
 
-Khushi Jain
-setInterval usecases
-setInterval is a method in JavaScript that repeatedly calls a function or executes a code snippet with a fixed time delay between each call. It can be used in a variety of ways, including:
+1. Creating a clock or timer - setInterval can be used to create a timer or clock that updates the time every second or minute.
+  Example:
 
-Creating a clock or timer - setInterval can be used to create a timer or clock that updates the time every second or minute.
-Example:
+  javascript
+  Copy code
+  let timer = setInterval(function() {
+    let currentTime = new Date();
+    console.log(currentTime);
+  }, 1000);
+  This will log the current time every second.
 
-javascript
-Copy code
-let timer = setInterval(function() {
-  let currentTime = new Date();
-  console.log(currentTime);
-}, 1000);
-This will log the current time every second.
+2. Animation - setInterval can be used to create animations on web pages by repeatedly updating the position of an element or changing its style.
+  Example:
 
-Animation - setInterval can be used to create animations on web pages by repeatedly updating the position of an element or changing its style.
-Example:
-
-javascript
-Copy code
-let element = document.getElementById("myElement");
-let position = 0;
-let animation = setInterval(function() {
-  position += 10;
-  element.style.left = position + "px";
-  if (position >= 500) {
-    clearInterval(animation);
-  }
-}, 50);
-This will move the element to the right by 10 pixels every 50 milliseconds until it reaches a position of 500 pixels.
-
-Sending periodic AJAX requests - setInterval can be used to periodically send AJAX requests to a server to update data on a web page.
-Example:
-
-javascript
-Copy code
-let data = [];
-let request = setInterval(function() {
-  $.ajax({
-    url: "data.php",
-    success: function(response) {
-      data = response;
-      updateUI(data);
+  javascript
+  Copy code
+  let element = document.getElementById("myElement");
+  let position = 0;
+  let animation = setInterval(function() {
+    position += 10;
+    element.style.left = position + "px";
+    if (position >= 500) {
+      clearInterval(animation);
     }
-  });
-}, 5000);
-This will send an AJAX request to data.php every 5 seconds and update the UI with the response.
+  }, 50);
 
-It is important to note that setInterval can cause performance issues if not used properly, such as causing excessive CPU usage and memory leaks. It should be used with caution and only when necessary.
+- This will move the element to the right by 10 pixels every 50 milliseconds until it reaches a position of 500 pixels.
 
+3. Sending periodic AJAX requests - setInterval can be used to periodically send AJAX requests to a server to update data on a web page.
 
+  let data = [];
+  let request = setInterval(function() {
+    $.ajax({
+      url: "data.php",
+      success: function(response) {
+        data = response;
+        updateUI(data);
+      }
+    });
+  }, 5000);
 
+- This will send an AJAX request to data.php every 5 seconds and update the UI with the response.
 
-Khushi Jain
-Events - "DOMContentLoaded" usecases
-The DOMContentLoaded event is fired when the initial HTML document has been completely loaded and parsed, without waiting for stylesheets, images, and subframes to finish loading. It is a useful event to use when you want to execute JavaScript code as soon as the document is ready.
+- It is important to note that setInterval can cause performance issues if not used properly, such as causing excessive CPU usage and memory leaks. 
+- It should be used with caution and only when necessary.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Events - "DOMContentLoaded"
+
+- The DOMContentLoaded event is fired when the initial HTML document has been completely loaded and parsed, without waiting for stylesheets, images, and subframes to finish loading.
+- It is a useful event to use when you want to execute JavaScript code as soon as the document is ready.
 
 Here are some use cases for DOMContentLoaded event:
 
-Setting up initial page state: You can use the DOMContentLoaded event to set up the initial state of the page. For example, you could hide or show certain elements, disable or enable form controls, or set default values for fields.
+1. Setting up initial page state: You can use the DOMContentLoaded event to set up the initial state of the page. For example, you could hide or show certain elements, disable or enable form controls, or set default values for fields.
 
-Initializing JavaScript modules: If you have JavaScript modules that need to be initialized after the page loads, you can use the DOMContentLoaded event to trigger their initialization. This ensures that the modules are ready to be used as soon as the page is ready.
+2. Initializing JavaScript modules: If you have JavaScript modules that need to be initialized after the page loads, you can use the DOMContentLoaded event to trigger their initialization. This ensures that the modules are ready to be used as soon as the page is ready.
 
-Loading external resources: You can use the DOMContentLoaded event to load external resources such as stylesheets, scripts, and images. This ensures that the resources are only loaded after the DOM is ready, which can improve page load times and prevent rendering issues.
+3. Loading external resources: You can use the DOMContentLoaded event to load external resources such as stylesheets, scripts, and images. This ensures that the resources are only loaded after the DOM is ready, which can improve page load times and prevent rendering issues.
 
-Starting animations and transitions: If you have animations or transitions that need to start as soon as the page loads, you can use the DOMContentLoaded event to trigger them. This ensures that the animations or transitions start at the right time and don't cause visual glitches or delays.
+4. Starting animations and transitions: If you have animations or transitions that need to start as soon as the page loads, you can use the DOMContentLoaded event to trigger them. This ensures that the animations or transitions start at the right time and don't cause visual glitches or delays.
 
 Overall, the DOMContentLoaded event is a powerful tool for ensuring that your JavaScript code runs as soon as the DOM is ready, which can improve page load times, prevent rendering issues, and provide a better user experience.
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+Events - "load"
 
-
-Khushi Jain
-Events - "load" usecases
 The "load" event is fired when a web page and all its resources have finished loading. It can be used for various purposes, such as:
 
-Displaying a loading indicator until all the content has been loaded.
-Starting an animation or slideshow when the page is fully loaded.
-Executing a script that depends on a specific element being fully loaded and rendered on the page.
-Measuring page load time for performance optimization purposes.
-Modifying the layout or content of the page based on the size and dimensions of the loaded resources (images, videos, etc.).
+1. Displaying a loading indicator until all the content has been loaded.
+2. Starting an animation or slideshow when the page is fully loaded.
+3. Executing a script that depends on a specific element being fully loaded and rendered on the page.
+4. Measuring page load time for performance optimization purposes.
+5. Modifying the layout or content of the page based on the size and dimensions of the loaded resources (images, videos, etc.).
+
 Here is an example of how to use the "load" event to display a loading indicator until all the content has been loaded:
 
-html
-Copy code
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Load Event Example</title>
-  <style>
-    .loading {
-      display: block;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 3em;
-    }
-  </style>
-</head>
-<body>
-  <div class="loading">Loading...</div>
-  <img src="image.jpg" alt="Image">
-  <script>
-    window.addEventListener('load', function() {
-      // Hide the loading indicator
-      document.querySelector('.loading').style.display = 'none';
-    });
-  </script>
-</body>
-</html>
-In this example, the "load" event is attached to the window object using the addEventListener method. When the event is fired, the callback function hides the loading indicator by setting its display style property to "none".
+  html
+  Copy code
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <title>Load Event Example</title>
+    <style>
+      .loading {
+        display: block;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 3em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="loading">Loading...</div>
+    <img src="image.jpg" alt="Image">
+    <script>
+      window.addEventListener('load', function() {
+        // Hide the loading indicator
+        document.querySelector('.loading').style.display = 'none';
+      });
+    </script>
+  </body>
+  </html>
 
+- In this example, the "load" event is attached to the window object using the addEventListener method. When the event is fired, the callback function hides the loading indicator by setting its display style property to "none".
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+Events - "scroll"
 
-Khushi Jain
-Events - "scroll" usecases
 The scroll event is triggered when the user scrolls an element, such as a webpage, using the mouse wheel, touchpad, or keyboard. Here are a few use cases of the scroll event:
 
-Infinite scrolling: The scroll event can be used to implement infinite scrolling, where new content is loaded as the user scrolls down the page. When the user reaches the bottom of the page, the event is triggered, and the next set of content can be loaded.
+1. Infinite scrolling: The scroll event can be used to implement infinite scrolling, where new content is loaded as the user scrolls down the page. When the user reaches the bottom of the page, the event is triggered, and the next set of content can be loaded.
 
-Scroll-based animations: The scroll event can be used to create animations that are triggered by scrolling. For example, as the user scrolls down the page, an image or text can be animated to appear or disappear.
+2. Scroll-based animations: The scroll event can be used to create animations that are triggered by scrolling. For example, as the user scrolls down the page, an image or text can be animated to appear or disappear.
 
-Parallax effects: The scroll event can be used to create parallax effects, where different layers of content move at different speeds as the user scrolls.
+3. Parallax effects: The scroll event can be used to create parallax effects, where different layers of content move at different speeds as the user scrolls.
 
-Sticky navigation: The scroll event can be used to create a sticky navigation menu that sticks to the top of the page as the user scrolls down.
+4. Sticky navigation: The scroll event can be used to create a sticky navigation menu that sticks to the top of the page as the user scrolls down.
 
-Lazy loading: The scroll event can be used to implement lazy loading, where images or other resources are only loaded when they are visible in the viewport. When the user scrolls down the page, the event is triggered, and the next set of images can be loaded.
+5. Lazy loading: The scroll event can be used to implement lazy loading, where images or other resources are only loaded when they are visible in the viewport. When the user scrolls down the page, the event is triggered, and the next set of images can be loaded.
 
-Overall, the scroll event is a useful tool for creating interactive and dynamic web pages that respond to user input.
+- Overall, the scroll event is a useful tool for creating interactive and dynamic web pages that respond to user input.
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+Width, Height, GetBoundingClientRect
 
+- The width and height properties in JavaScript are used to get the width and height of an element, respectively. 
+- These properties can be used to manipulate the size of an element dynamically using JavaScript.
 
-Khushi Jain
-Width, Height, GetBoundingClientRect usecases
-The width and height properties in JavaScript are used to get the width and height of an element, respectively. These properties can be used to manipulate the size of an element dynamically using JavaScript.
+- For example, to set the width of an element with the ID myElement to 200 pixels, you can use the following code:
 
-For example, to set the width of an element with the ID myElement to 200 pixels, you can use the following code:
+  arduino
+  Copy code
+  document.getElementById("myElement").style.width = "200px";
 
-arduino
-Copy code
-document.getElementById("myElement").style.width = "200px";
-The getBoundingClientRect() method returns the size of an element and its position relative to the viewport. This method returns a DOMRect object, which contains the following properties:
+- The getBoundingClientRect() method returns the size of an element and its position relative to the viewport. 
+- This method returns a DOMRect object, which contains the following properties:
+-
+- x and y: the coordinates of the element's top-left corner relative to the viewport.
+- width and height: the dimensions of the element.
+- top, right, bottom, and left: the distances between the element's edges and the corresponding edges of the viewport.
+- This method is particularly useful when you need to calculate the position of an element relative to the viewport, for example, when implementing a parallax effect.
 
-x and y: the coordinates of the element's top-left corner relative to the viewport.
-width and height: the dimensions of the element.
-top, right, bottom, and left: the distances between the element's edges and the corresponding edges of the viewport.
-This method is particularly useful when you need to calculate the position of an element relative to the viewport, for example, when implementing a parallax effect.
+- Here's an example of using getBoundingClientRect() to get the dimensions and position of an element with the ID myElement:
 
-Here's an example of using getBoundingClientRect() to get the dimensions and position of an element with the ID myElement:
+  arduino
+  Copy code
+  const element = document.getElementById("myElement");
+  const rect = element.getBoundingClientRect();
+  console.log(rect.width, rect.height, rect.x, rect.y);
 
-arduino
-Copy code
-const element = document.getElementById("myElement");
-const rect = element.getBoundingClientRect();
-console.log(rect.width, rect.height, rect.x, rect.y);
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+Events - "resize"
 
+- The resize event is triggered when the size of the browser window or an element is changed. Some use cases of the resize event are:
 
-Khushi Jain
-Events - "resize" usecases
-The resize event is triggered when the size of the browser window or an element is changed. Some use cases of the resize event are:
+- Responsive design: When designing a website or application that needs to adapt to different screen sizes, the resize event can be used to dynamically adjust the layout based on the window size.
 
-Responsive design: When designing a website or application that needs to adapt to different screen sizes, the resize event can be used to dynamically adjust the layout based on the window size.
+- Updating content: When the size of an element changes due to resizing, its content may need to be updated accordingly. For example, if a container div gets bigger, the text inside it may need to wrap differently or images may need to resize.
 
-Updating content: When the size of an element changes due to resizing, its content may need to be updated accordingly. For example, if a container div gets bigger, the text inside it may need to wrap differently or images may need to resize.
+- Animations: The resize event can be used to trigger animations or effects that are tied to changes in element size. For example, an image gallery may animate the transition between images when the window is resized.
 
-Animations: The resize event can be used to trigger animations or effects that are tied to changes in element size. For example, an image gallery may animate the transition between images when the window is resized.
+- Here is an example of using the resize event to update the size of an element dynamically:
 
-Here is an example of using the resize event to update the size of an element dynamically:
+  html
+  Copy code
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <style>
+      #box {
+        width: 200px;
+        height: 200px;
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box"></div>
+    <script>
+      window.addEventListener('resize', function() {
+        var box = document.getElementById('box');
+        var rect = box.getBoundingClientRect();
+        box.style.width = rect.width + 10 + 'px';
+        box.style.height = rect.height + 10 + 'px';
+      });
+    </script>
+  </body>
+  </html>
 
-html
-Copy code
-<!DOCTYPE html>
-<html>
-<head>
-  <style>
-    #box {
-      width: 200px;
-      height: 200px;
-      background-color: red;
-    }
-  </style>
-</head>
-<body>
-  <div id="box"></div>
-  <script>
-    window.addEventListener('resize', function() {
-      var box = document.getElementById('box');
-      var rect = box.getBoundingClientRect();
-      box.style.width = rect.width + 10 + 'px';
-      box.style.height = rect.height + 10 + 'px';
-    });
-  </script>
-</body>
-</html>
-In this example, the resize event is used to increase the size of a red box element by 10 pixels in both width and height each time the window is resized. The getBoundingClientRect method is used to get the current dimensions of the box element.
+- In this example, the resize event is used to increase the size of a red box element by 10 pixels in both width and height each time the window is resized. The getBoundingClientRect method is used to get the current dimensions of the box element.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Counter HTML
 Preview
