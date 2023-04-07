@@ -16,6 +16,11 @@
 [Inline Javascript](#inline-javascript)
 
 [Internal Javascript](#internal-javascript)
+External Javascript
+Helper Methods
+const, let, var
+String Concatenation
+Implicit Type Conversion
 
 
 ## Basic Intro<a name="1"></a>
@@ -150,29 +155,37 @@ reduce() - Applies a function to each element of an array to reduce it to a sing
 
 - var: Declares a variable that can be reassigned. The value of a var variable can be changed after it is set. var is function-scoped, meaning it is accessible within the function it was declared in, or the global scope if it was declared outside of a function.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+## String Concatenation
 
-String Concatenation
-
+```js
 const firstName = 'John';
 const lastName = 'Doe';
 const fullName = firstName + ' ' + lastName;
 console.log(fullName); // Output: John Doe
+```
+Template literals are a way to concatenate strings and variables in a more convenient and readable way in JavaScript.
+```js
+    const message = `My name is ${name}, I am ${age} years old, and I work as a ${occupation}.`;
 
-const firstName = 'John';
-const lastName = 'Doe';
-const fullName = `${firstName} ${lastName}`;
-console.log(fullName); // Output: John Doe
+    const message = `This is a
+    multi-line
+    string.`;
 
+    console.log(message);
+    // Output:
+    // "This is a
+    // multi-line
+    // string."
+```
+```js
 const fruits = ['apple', 'banana', 'orange'];
 const fruitString = fruits.join(', ');
 console.log(fruitString); // Output: apple, banana, orange
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Implicit Type Conversion
+```
+## Implicit Type Conversion
 
 - Implicit type conversion, also known as type coercion
+```js
 //Number to String
 const num = 42;
 const str = 'The answer is ' + num;
@@ -187,10 +200,9 @@ console.log(numNum); // Output: 42
 const bool = true;
 const numBool = bool + 1;
 console.log(numBool); // Output: 2
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Data Types
+```
+## Data Types
+    
 - Primitive data types:
 
     a. Number: Represents numeric values, including integers and floating-point numbers.
@@ -219,135 +231,139 @@ Data Types
 
     f. Map and Set: Represent collections of values that can be iterated over and manipulated in various ways. These are introduced in ES6 and later.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Arrays
+## Arrays
 
 1. Creating an array:
-
+```js
 const myArray = [1, 2, 3, 4, 5];
-
+```
 2. Alternatively, an empty array can be created and filled with values later:
-
+```js
 const myArray = [];
 myArray.push(1);
 myArray.push(2);
 myArray.push(3);
-
+```
 3. Accessing array elements: Array elements can be accessed using bracket notation and an index, starting from 0:
-
+```js
 const myArray = [1, 2, 3, 4, 5];
-console.log(myArray[0]); // Output: 1
-console.log(myArray[3]); // Output: 4
-
+```
 4. Modifying array elements: Array elements can be modified using bracket notation and an index:
-
+```js
 const myArray = [1, 2, 3, 4, 5];
 myArray[2] = 'three';
-console.log(myArray); // Output: [1, 2, "three", 4, 5]
-
+```
 5. Array length: The length of an array can be accessed using the length property:
-
+```js
 const myArray = [1, 2, 3, 4, 5];
 console.log(myArray.length); // Output: 5
-
+```
 6. Adding elements to an array: Elements can be added to the end of an array using the push() method:
-
+```js
 const myArray = [1, 2, 3, 4, 5];
 myArray.push(6);
 console.log(myArray); // Output: [1, 2, 3, 4, 5, 6]
-
+```
 7. Alternatively, elements can be added to the beginning of an array using the unshift() method:
-
+```js
 const myArray = [1, 2, 3, 4, 5];
 myArray.unshift(0);
 console.log(myArray); // Output: [0, 1, 2, 3, 4, 5]
-
+```
 8. Removing elements from an array: Elements can be removed from the end of an array using the pop() method:
-
+```js
 const myArray = [1, 2, 3, 4, 5];
 myArray.pop();
 console.log(myArray); // Output: [1, 2, 3, 4]
-
+```
 9. Elements can be removed from the beginning of an array using the shift() method:
-
+```js
 const myArray = [1, 2, 3, 4, 5];
 myArray.shift();
 console.log(myArray); // Output: [2, 3, 4, 5]
-
+```
 10. splice(index, count, element1, element2, ..., elementN): This method adds or removes elements from the array at the specified index.
+```js
 const arr = [1, 2, 3, 4];
 arr.splice(1, 2, 5, 6);
 console.log(arr); // [1, 5, 6, 4]
-
+```
 11. slice(startIndex, endIndex): This method returns a portion of the array, starting from the specified start index and ending at the specified end index (excluding the element at the end index).
+```js
 const arr = [1, 2, 3, 4];
 const subArray = arr.slice(1, 3);
 console.log(subArray); // [2, 3]
+```
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Functions
+## Functions
 
 1. Declaring a Function:
+```js
     function greet(name) {
     console.log(`Hello, ${name}!`);
     }
-
+```
 2. Invoking a Function:
+```js    
     greet("John"); // Output: Hello, John!
-
+```
 3. Parameters and Arguments: Parameters are variables declared in the function signature, while arguments are the actual values passed to the function when it's invoked:
+```js
     function multiply(a, b) {
     return a * b;
     }
     const result = multiply(2, 3); // arguments are 2 and 3
     console.log(result); // Output: 6
-
+```
 4. Return:
+```js
     function multiply(a, b) {
     return a * b;
     }
     const result = multiply(2, 3);
     console.log(result); // Output: 6
-
+```
 5. Function Expressions: A function expression is a function that's assigned to a variable or a constant and is not declared using the function keyword:
+```js
     const greet = function(name) {
     console.log(`Hello, ${name}!`);
     };
     greet("John"); // Output: Hello, John!
-
+```
 6. Arrow Functions: An arrow function is a shorthand way to declare a function using the => arrow notation:
+```js
     const multiply = (a, b) => {
     return a * b;
     };
     const result = multiply(2, 3);
     console.log(result); // Output: 6
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Objects
-
+```
+## Objects
 - In JavaScript, an object is a collection of properties, where each property is a key-value pair.
 - Creating an Object:
+```js
     const person = {
     name: "John",
     age: 30,
     city: "New York"
     };
-
+```
 - Accessing Object Properties:
+```js    
     console.log(person.name); // Output: John
     console.log(person["age"]); // Output: 30
-
+```
 - Adding and Modifying Object Properties:
+```js
     person.gender = "Male"; // Add a new property
     person.age = 32; // Modify an existing property
-
+```
 - Deleting Object Properties:
+```js
     delete person.city;
-
+```
 - Object Methods:
+```js
     const person = {
     name: "John",
     age: 30,
@@ -357,8 +373,9 @@ Objects
     }
     };
     person.sayHello(); // Output: Hello, my name is John!
-
+```
 - Object Constructors: Objects can also be created using constructors, which are functions that are used to create new objects
+```js 
     function Person(name, age, city) {
     this.name = name;
     this.age = age;
@@ -369,39 +386,40 @@ Objects
     }
     const person = new Person("John", 30, "New York");
     person.sayHello(); // Output: Hello, my name is John!
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Equality
+```
+## Equality
 
 -  There are two types of equality operators: == and ===. The == operator is used to test for abstract equality, while the === operator is used to test for strict equality.
 - The == operator compares two values for equality after converting both values to a common type. This type conversion is known as type coercion. 
-  eg: console.log(1 == "1");    // true
-      console.log(true == 1);   // true
-      console.log(null == undefined); // true
-      console.log(null == 0);   // false
-      console.log(false == ""); // true
+```js
+  console.log(1 == "1");    // true
+  console.log(true == 1);   // true
+  console.log(null == undefined); // true
+  console.log(null == 0);   // false
+  console.log(false == ""); // true
+```
 - The === operator compares two values for equality without converting their types
-  eg. console.log(1 === "1");    // false
-      console.log(true === 1);   // false
-      console.log(null === undefined); // false
-      console.log(null === 0);   // false
-      console.log(false === ""); // false
+```js
+    console.log(1 === "1");    // false  
+    console.log(true === 1);   // false
+  console.log(null === undefined); // false
+  console.log(null === 0);   // false
+  console.log(false === ""); // false
+```
 
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-String Properties and Methods
-
+## String Properties and Methods
+```js
 const str = "hello";
-
+```
 String Properties:
     - length: 
+```js    
     str.length
-
+```
     - constructor: This property returns a reference to the string's constructor function.
+```js
     str.constructor
-
+```
 String Methods:
     - toUpperCase()
     - toLowerCase()
@@ -411,45 +429,31 @@ String Methods:
     - replace(searchValue, replaceValue)
     - substring(startIndex, endIndex)
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Template Literals
-Template literals are a way to concatenate strings and variables in a more convenient and readable way in JavaScript.
-    const message = `My name is ${name}, I am ${age} years old, and I work as a ${occupation}.`;
-
-    const message = `This is a
-    multi-line
-    string.`;
-
-    console.log(message);
-    // Output:
-    // "This is a
-    // multi-line
-    // string."
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Value vs Reference
+## Value vs Reference
 - In JavaScript, variables can hold either primitive values or reference values. 
 
 Primitive Values:
 - Primitive values in JavaScript include strings, numbers, booleans, null, and undefined. 
+```js    
     let x = 5; // x holds the primitive value 5
     let y = x //The value of x is copied to y and stored in a new memory location. Any changes to y will not affect the value of x.
-
+```
 Reference Values:
 - Reference values in JavaScript include objects and arrays.
+```js
     let obj1 = {name: "John", age: 30}; // obj1 holds a reference to an object
     let obj2 = obj1; // obj2 also holds a reference to the same object as obj1
+```
 
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Null and Undefined
+## Null and Undefined
 - undefined is a primitive value that is automatically assigned to variables that have been declared but have not yet been assigned a value. For example:
+```js    
     let x; // x is undefined
+```
 - null, on the other hand, is an explicitly assigned value that represents the intentional absence of any object value. 
+```js
     let x=null
+```
 - null is considered an object type, while undefined is a primitive value.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -469,16 +473,12 @@ Truthy and Falsy
     NaN
     "" (empty string)
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Variable Lookup
+## Variable Lookup
 - Variable lookup in JavaScript refers to the process of finding the value of a variable based on its name and scope.
 - When JavaScript encounters a variable name, it searches for the value of that variable in a series of nested scopes until it either finds the value or determines that the variable is undefined.
 - If the variable is not found in any scope, JavaScript considers the variable to be undefined and throws a ReferenceError.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Callback Functions, Higher Order Functions
+## Callback Functions, Higher Order Functions
 
 Callback Functions
     - A callback function is a function that is passed as an argument to another function and is executed inside that function. 
@@ -486,6 +486,7 @@ Callback Functions
 
 Higher Order Functions
 - A higher-order function is a function that takes one or more functions as arguments, and/or returns a function as its result. 
+```js
     function repeat(n, action) {
     for (let i = 0; i < n; i++) {
         action(i);
@@ -497,20 +498,16 @@ Higher Order Functions
     }
 
     repeat(5, logNumber);
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Array Iterators
+```
+## Array Iterators
 
 - In JavaScript, arrays come with a set of built-in methods, known as iterators, that allow you to easily loop through the elements of an array and perform operations on them. 
 - These methods include forEach(), map(), filter(), reduce(), find(), and many more.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-forEach
+## forEach
 - The forEach() method is used to loop over an array and perform a function on each element. 
 - It takes a callback function as an argument that will be executed once for each element in the array.
-
+```js
 const numbers = [1, 2, 3, 4, 5];
 
 numbers.forEach(function(number) {
@@ -541,12 +538,10 @@ const person = {
 Object.entries(person).forEach(([key, value]) => {
   console.log(`${key}: ${value}`);
 });
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-map
+```
+## map
 - The map() method is used to loop over an array and create a new array with the results of calling a provided function on every element in the array.
-
+```js
 const numbers = [1, 2, 3, 4, 5];
 
 const doubledNumbers = numbers.map(function(number) {
@@ -581,13 +576,11 @@ const numbers = [1, 2, 3, 4, 5];
 const squaredNumbers = numbers.map(number => number ** 2);
 
 console.log(squaredNumbers);
+```
 
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-filter
+## filter
 - The filter() method is used to loop over an array and create a new array with all elements that pass a provided test.
-
+```js
 const numbers = [1, 2, 3, 4, 5];
 
 const evenNumbers = numbers.filter(function(number) {
@@ -595,13 +588,11 @@ const evenNumbers = numbers.filter(function(number) {
 });
 
 console.log(evenNumbers); // [2, 4]
+```
 
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-find
+## find
 - The find() method is used to loop over an array and return the first element that passes a provided test.
-
+```js
 const numbers = [1, 2, 3, 4, 5];
 
 const firstEvenNumber = numbers.find(function(number) {
@@ -609,12 +600,10 @@ const firstEvenNumber = numbers.find(function(number) {
 });
 
 console.log(firstEvenNumber); // 2
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-reduce
+```
+## reduce
 - The reduce() method is used to loop over an array and reduce it to a single value by performing a provided operation on each element.
-
+```js
 const numbers = [1, 2, 3, 4, 5];
 
 const sum = numbers.reduce(function(total, number) {
@@ -622,12 +611,10 @@ const sum = numbers.reduce(function(total, number) {
 }, 0);
 
 console.log(sum); // 15
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Square Bracket Notation
+```
+## Square Bracket Notation
 - Square bracket notation is particularly useful when working with dynamic property names or when the property name is not known until runtime. 
-
+```js
 const person = {
   name: 'John',
   age: 30,
@@ -638,91 +625,104 @@ const propertyName = 'age';
 person[propertyName] = 31;
 
 console.log(person.age); // Output: 31
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Math Object
+```
+## Math Object
 
 1. Math.PI: Returns the value of pi, which is approximately 3.141592653589793.
-console.log(Math.PI); // Output: 3.141592653589793
-
+```js
+    console.log(Math.PI); // Output: 3.141592653589793
+```
 2. Math.abs(): Returns the absolute value of a number.
-console.log(Math.abs(-5)); // Output: 5
-
+```js
+    console.log(Math.abs(-5)); // Output: 5
+```
 3. Math.ceil(): Rounds a number up to the nearest integer.
-console.log(Math.ceil(4.3)); // Output: 5
-
+```js
+    console.log(Math.ceil(4.3)); // Output: 5
+```
 4. Math.floor(): Rounds a number down to the nearest integer.
-console.log(Math.floor(4.9)); // Output: 4
-
+```js
+    console.log(Math.floor(4.9)); // Output: 4
+```
 5. Math.round(): Rounds a number to the nearest integer.
+```js
 console.log(Math.round(4.5)); // Output: 5
 console.log(Math.round(4.4)); // Output: 4
-
+```
 6. Math.max(): Returns the largest of zero or more numbers.
-console.log(Math.max(1, 2, 3)); // Output: 3
-
+```js
+    console.log(Math.max(1, 2, 3)); // Output: 3
+```
 7. Math.min(): Returns the smallest of zero or more numbers.
-console.log(Math.min(1, 2, 3)); // Output: 1
-
+```js
+    console.log(Math.min(1, 2, 3)); // Output: 1
+```
 8. Math.random(): Returns a random number between 0 (inclusive) and 1 (exclusive).
-console.log(Math.random()); // Output: a random number between 0 and 1
-
+```js
+    console.log(Math.random()); // Output: a random number between 0 and 1
+```
 9. Math.sqrt(): Returns the square root of a number.
-console.log(Math.sqrt(9)); // Output: 3
-
+```js
+    console.log(Math.sqrt(9)); // Output: 3
+```
 10. Math.pow(): Returns the result of a base raised to an exponent.
-console.log(Math.pow(2, 3)); // Output: 8
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Date Object
+```js
+    console.log(Math.pow(2, 3)); // Output: 8
+```
+## Date Object
 - It provides a number of methods to get and set the current date and time, as well as manipulate them in various ways.
 
 1. new Date(): Creates a new instance of the Date object with the current date and time.
+```js
 let currentDate = new Date();
 console.log(currentDate); // Output: current date and time
-
+```
 2. Date.now(): Returns the number of milliseconds since January 1, 1970, 00:00:00 UTC.
+```js
 let currentTime = Date.now();
 console.log(currentTime); // Output: number of milliseconds since January 1, 1970, 00:00:00 UTC
-
+```
 3. getYear(), getFullYear(): Returns the year of the date as a 2-digit or 4-digit number.
+```js
 let date = new Date();
 console.log(date.getYear()); // Output: year as a 2-digit number
 console.log(date.getFullYear()); // Output: year as a 4-digit number
-
+```
 4. getMonth(): Returns the month of the date as a number between 0 and 11.
+```js
 let date = new Date();
 console.log(date.getMonth()); // Output: month as a number between 0 and 11
-
+```
 5. getDate(): Returns the day of the month of the date as a number between 1 and 31.
+```js
 let date = new Date();
 console.log(date.getDate()); // Output: day of the month as a number between 1 and 31
-
+```
 6. getDay(): Returns the day of the week of the date as a number between 0 (Sunday) and 6 (Saturday).
+```js
 let date = new Date();
 console.log(date.getDay()); // Output: day of the week as a number between 0 and 6
-
+```
 7. getHours(), getMinutes(), getSeconds(), getMilliseconds(): Returns the hours, minutes, seconds, and milliseconds of the date as numbers.
+```js
 let date = new Date();
 console.log(date.getHours()); // Output: hours of the date as a number between 0 and 23
 console.log(date.getMinutes()); // Output: minutes of the date as a number between 0 and 59
 console.log(date.getSeconds()); // Output: seconds of the date as a number between 0 and 59
 console.log(date.getMilliseconds()); // Output: milliseconds of the date as a number between 0 and 999
-
+```
 8. setFullYear(), setMonth(), setDate(), setHours(), setMinutes(), setSeconds(), setMilliseconds(): Sets the year, month, day of the month, hours, minutes, seconds, and milliseconds of the date.
+```js
 let date = new Date();
 date.setFullYear(2022);
 console.log(date.getFullYear()); // Output: 2022
-
+```
 9. toString(): Returns a string representation of the date.
+```js
 let date = new Date();
 console.log(date.toString()); // Output: string representation of the date
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-DOM - Intro
+```
+## DOM - Intro
 
 - The Document Object Model (DOM) is a programming interface for web documents. 
 - It represents the page so that programs can change the document structure, style, and content. 
@@ -730,17 +730,17 @@ DOM - Intro
 - This allows programming languages, such as JavaScript, to manipulate the page's content, structure, and styling.
 
 The DOM tree is made up of four main types of nodes: document nodes, element nodes, attribute nodes, and text nodes.
-    # The HTML document itself is the document node.
-    # The HTML elements are defined by element nodes.
-    # The HTML attributes are defined by attribute nodes.
-    # Text inside HTML elements are defined by text nodes.
-    # Comments are defined by comment nodes.
+    - The HTML document itself is the document node.
+    - The HTML elements are defined by element nodes.
+    - The HTML attributes are defined by attribute nodes.
+    - Text inside HTML elements are defined by text nodes.
+    - Comments are defined by comment nodes.
 
 JavaScript can access and manipulate the DOM in a variety of ways. For example, it can:
-    # Add or remove elements and attributes
-    # Change the content of an element
-    # Change the styling of an element
-    # Respond to user events, such as mouse clicks or keyboard input
+    - Add or remove elements and attributes
+    - Change the content of an element
+    - Change the styling of an element
+    - Respond to user events, such as mouse clicks or keyboard input
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -994,7 +994,6 @@ Query Selector and Query Selector ALL
 - If no matches are found, null is returned.
 
 1. Selecting an element by its ID:
-const myElement = document.querySelector('#myId');
 
 2. Selecting the first element of a certain tag:
 const myElement = document.querySelector('div');
