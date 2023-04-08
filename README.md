@@ -456,9 +456,7 @@ Reference Values:
 ```
 - null is considered an object type, while undefined is a primitive value.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Truthy and Falsy
+## Truthy and Falsy
 - A truthy value is a value that evaluates to true when coerced into a boolean. Examples of truthy values in JavaScript include:
     Non-empty strings: "hello", "0", "false"
     Numbers other than 0: 1, 3.14, -42
@@ -742,9 +740,7 @@ JavaScript can access and manipulate the DOM in a variety of ways. For example, 
     - Change the styling of an element
     - Respond to user events, such as mouse clicks or keyboard input
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Window and Document Overview
+## Window and Document Overview
 - In web development, the Window and Document are two important objects that provide a way to interact with and manipulate the browser window and the content displayed in it.
 - The Window object is the top-level object of the browser's JavaScript API, and it represents the browser window that is displaying the current web page.
 - One common use of the Window object is to interact with the current web page by accessing its Document object. 
@@ -760,14 +756,11 @@ removeChild(): removes a child element from its parent
 setAttribute(): sets an attribute on an element
 addEventListener(): adds an event listener to an element
 
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Get Element By ID
+## Get Element By ID
 
 Usecases:
 1. Manipulating text and content
-
+```js
     // retrieve the reference to the div element
     const myDiv = document.getElementById('myDiv');
 
@@ -776,9 +769,9 @@ Usecases:
 
     // change the background color of the div element
     myDiv.style.backgroundColor = 'red';
-
+```
 2. Validating form inputs
-
+```js
     // retrieve the reference to the email input element
     const emailInput = document.getElementById('email');
 
@@ -803,10 +796,10 @@ Usecases:
     // check that the email address is valid
     // ...
     }
-
+```
 
 3. Animating elements
-
+```js
     // retrieve the reference to the image element
     const myImage = document.getElementById('myImage');
 
@@ -822,9 +815,9 @@ Usecases:
     myImage.style.transform = '';
     myImage.style.opacity = 1;
     });
-
+```
 4. Showing and hiding elements
-
+```js
     //html
     <button id="showBtn">Show</button>
     <button id="hideBtn">Hide</button>
@@ -842,31 +835,33 @@ Usecases:
     hideBtn.addEventListener('click', () => {
     myDiv.style.display = 'none';
     });
+```
 
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Get Elements By Tag Name
+## Get Elements By Tag Name
 - getElementsByTagName() is a method in JavaScript that is used to retrieve a collection of elements on the page with the specified tag name. 
 - It returns a HTMLCollection object that contains all elements with the specified tag name in the order they appear in the HTML source code.
 
 1. Accessing a single element:
+```js
 const myElement = document.getElementsByTagName('div')[0];
-
+```
 2. Looping through multiple elements:
+```js
 const myElements = document.getElementsByTagName('div');
 for (let i = 0; i < myElements.length; i++) {
   console.log(myElements[i]);
 }
-
+```
 3. Adding event listeners to multiple elements:
+```js
 const myButtons = document.getElementsByTagName('button');
 for (let i = 0; i < myButtons.length; i++) {
   myButtons[i].addEventListener('click', function() {
     console.log('Button ' + (i + 1) + ' was clicked!');
   });
 }
-
+```
+### Tag Names
 a: Anchor element
 abbr: Abbreviation element
 acronym: Acronym element (deprecated)
@@ -967,50 +962,59 @@ ul: Defines an unordered list in an HTML document
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Get Element By Class Name
+## Get Element By Class Name
 
 1. Retrieving elements with a single class name:
+```js
 const elements = document.getElementsByClassName('my-class');
 //This retrieves all elements with the class name "my-class" and returns a live HTMLCollection.
-
+```
 2. Retrieving elements with multiple class names:
+```js
 const elements = document.getElementsByClassName('class-1 class-2');
 //This retrieves all elements that have both the "class-1" and "class-2" class names.
-
+```
 3. Retrieving elements from a specific parent element:
+```js
 const parent = document.getElementById('parent-element');
 const elements = parent.getElementsByClassName('my-class');
-
+```
 4. Retrieving the first element with a class name:
+```js
 const element = document.getElementsByClassName('my-class')[0];
-
+```
 - It's worth noting that getElementsByClassName returns a live collection, which means that if you modify the DOM in a way that affects the collection, it will automatically update to reflect those changes. If you need a static collection of elements, you can convert the HTMLCollection to an array:
+```js
 const elements = Array.from(document.getElementsByClassName('my-class'));
-
+```
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Query Selector and Query Selector ALL
+## Query Selector and Query Selector ALL
 - The Document method querySelector() returns the first Element within the document that matches the specified selector, or group of selectors. 
 - If no matches are found, null is returned.
 
 1. Selecting an element by its ID:
 
 2. Selecting the first element of a certain tag:
+```js
 const myElement = document.querySelector('div');
-
+```
 3. Selecting the first element with a certain class:
+```js
 const myElement = document.querySelector('.myClass');
-
+```
 4. Selecting the first element with a certain attribute:
+```js
 const myElement = document.querySelector('[data-myAttribute]');
-
+```
 5. Selecting the first element matching a specific CSS selector:
+```js
 const myElement = document.querySelector('ul li:last-child');
-
-- selectors
-    > A string containing one or more selectors to match. 
-    > This string must be a valid CSS selector string; if it isn't, a SyntaxError exception is thrown.
-    > more on: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors
+```
+- what is selectors?
+    - A string containing one or more css selectors to match. 
+    - This string must be a valid CSS selector string; if it isn't, a SyntaxError exception is thrown.
+    - more on: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors
 - same for Query Selector ALL
     const myElements = document.querySelectorAll('.myClass');
 
